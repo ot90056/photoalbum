@@ -6,7 +6,8 @@
  * Last Modified by Rafael Li
  */
 #include "image_node.h"
-#include "vwrap.h"
+#include <vector>
+#include <string>
 
 #ifndef PABACKEND_CLASS
 #define PABACKEND_CLASS
@@ -73,7 +74,7 @@ public:
     void remove_Tag(int ind, char* tag);
 
     // Returns a vector for the tags of a specified image
-    vwrap get_Tags(int ind);
+    std::vector<std::string> get_Tags(int ind);
 
     // Returns number for image at selected index
     int get_Num_Tags(int ind);

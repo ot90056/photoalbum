@@ -206,21 +206,21 @@ image_node* LL::select(int ind) {
 
 void LL::add_Tag(int ind, char* tag) {
     image_node* nptr = select(ind);
-    nptr->tags.push_back(tag);
+    nptr->tags->vector.push_back(tag);
 }
 
 void LL::remove_Tag(int ind, char* tag) {
     image_node* nptr = select(ind);
-    if (std::find(nptr->tags.begin(), nptr->tags.end(), tag) != nptr->tags.end()) {
+    if (std::find(nptr->tags->vector.begin(), nptr->tags->vector.end(), tag) != nptr->tags->vector.end()) {
         int ind = 0;
         bool found = false;
         // Find proper index
         while (!found) {
-            if (nptr->tags.at(ind) == tag)
+            if (nptr->tags->vector.at(ind) == tag)
                 found = true;
             else ind++;
         }
-        nptr->tags.erase(nptr->tags.begin() + ind);
+        nptr->tags->vector.erase(nptr->tags->vector.begin() + ind);
     }
     else {
         throw TagNotFoundException();
@@ -229,18 +229,18 @@ void LL::remove_Tag(int ind, char* tag) {
 
 int LL::get_Num_Tags(int ind) {
     image_node* nptr = select(ind);
-    return nptr->tags.size();
+    return nptr->tags->vector.size();
 }
 
-vwrap LL::get_Tags(int ind) {
+std::vector<std::string> LL::get_Tags(int ind) {
     image_node* nptr = select(ind);
-    return nptr->tags;
+    return nptr->tags->vector;
 }
 
 void LL::print_Tags(int ind) {
     image_node *n = select(ind);
     int j = 1;
-    for (string i : n->tags) {
+    for (string i : n->tags->vector) {
         cout << "TAG[" << j << "]" << i << endl;
         j++;
     }

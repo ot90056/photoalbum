@@ -16,17 +16,16 @@ int main() {
     // TESTING PUSH
     cout << "||TESTING PUSH||" << endl;
     cout << "PUSHING 10 IMGS NAMED 0-9" << endl;
+    std::vector<vwrap> vws0(10);
     for (int i = 0; i < 10; i++) {
         string stri = to_string(i);
         char* chi = _strdup(stri.c_str());
-        vwrap vw;
-        image_node n = { 0, "location", vw, NULL, chi };
+        image_node n = { 0, "location", &vws0[i], NULL, chi };
         photos.push(n);
     }
     cout << "RESULT: " << endl;
     photos.print_out();
     cout << endl;
-
 
     // TESTING REMOVE_LAST
     cout << endl;
@@ -58,11 +57,11 @@ int main() {
     // Generate images and fill list with them
     cout << "||TESTING ADDLAST||" << endl;
     cout << "ADDING TO TAIL 10 IMGS NAMED 0-9" << endl;
+    std::vector<vwrap> vws1(10);
     for (int k = 0; k < 10; k++) {
         string stri = to_string(k);
         char* chi = _strdup(stri.c_str());
-        vwrap vw;
-        image_node n = { 0, "location", vw, NULL, chi };
+        image_node n = { 0, "location", &vws1[k], NULL, chi };
         photos.add_Last(n);
     }
     cout << "RESULT: " << endl;
@@ -79,7 +78,7 @@ int main() {
     cout << "INSERTING INTO FIRST INDEX" << endl;
     char chfi[6] = "first";
     vwrap vw0;
-    image_node infi = { 0, "location", vw0, NULL, chfi };
+    image_node infi = { 0, "location", &vw0, NULL, chfi };
     photos.insert(0, infi);
     cout << "RESULT: " << endl;
     photos.print_out();
@@ -88,7 +87,7 @@ int main() {
     cout << "INSERTING INTO MIDDLE, INDEX 6" << endl;
     char chmi[7] = "middle";
     vwrap vw1;
-    image_node inmi = { 0, "location", vw1, NULL, chmi };
+    image_node inmi = { 0, "location", &vw1, NULL, chmi };
     photos.insert(5, inmi);
     cout << "RESULT: " << endl;
     photos.print_out();
@@ -97,7 +96,7 @@ int main() {
     cout << "INSERTING INTO LAST INDEX" << endl;
     char chla[5] = "last";
     vwrap vw2;
-    image_node inla = { 0, "location", vw2, NULL, chla };
+    image_node inla = { 0, "location", &vw2, NULL, chla };
     photos.insert(11, inla);
     cout << "RESULT: " << endl;
     photos.print_out();
@@ -163,11 +162,11 @@ int main() {
     cout << endl;
 
     // Fills list with values
+    std::vector<vwrap> vws2(5);
     for (int m = 0; m < 5; m++) {
         string stri = to_string(m);
         char* chi = _strdup(stri.c_str());
-        vwrap vw;
-        image_node n = { 0, "location", vw, NULL, chi };
+        image_node n = { 0, "location", &vws2[m], NULL, chi };
         photos.add_Last(n);
     }
 

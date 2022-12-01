@@ -6,18 +6,21 @@
  * Kevin Gonzales
  * 11/30/22
  * Modified by Rafael Li
+ * 12/01/2022
+ * Made C99 compliant - Kevin Gonzales
  */
-#include "vwrap.h"
 
 #ifndef IMAGE_NODE_FILE
 #define IMAGE_NODE_FILE
 
+typedef struct vwrap vwrap;
+
 typedef struct image_node {
     int num_tags;
-    const char *location;
-    vwrap tags;
-    struct image_node *next;
-    char *name; /* !MUST BE NUL TERMINATED! */
+    const char * location;
+    vwrap * tags;
+    struct image_node * next;
+    char * name; /* !MUST BE NUL TERMINATED! */
 } image_node;
 
 #endif
