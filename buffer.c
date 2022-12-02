@@ -59,9 +59,9 @@ static texture_node_t * parse_node(const image_node * node)
         printf("::BUFFER_INTERNAL_ERROR::\nUnexpected strlcpy error\n\n");
         goto clean;
     }
-    if (file_location[sanity-1] != '\\') /* add '\' to end of location if not already there */
+    if (file_location[sanity-1] != '/') /* add '\' to end of location if not already there */
     {
-        file_location[sanity] = '\\';
+        file_location[sanity] = '/';
         file_location[sanity+1] = '\0';
     }
     sanity = strlcat(file_location, node->name, length);
@@ -139,6 +139,13 @@ void buffer_free_image(const texture_t * texture)
     
     pthread_mutex_lock(&mutex);
     
+    if (!dll_textures)
+    {
+        printf("::BUFFER_ERROR::\nAttempt to free untracked pointer\n\n");
+        pthread_mutex_unlock(&mutex);
+        return;
+    }
+    
 #ifndef NDEBUG
     texture_node_t * iterator = dll_textures;
     while (iterator != NULL)
@@ -147,8 +154,7 @@ void buffer_free_image(const texture_t * texture)
             break;
         iterator = iterator->next;
     }
-    assert(!iterator && dll_textures && "::BUFFER_DEBUG_ERROR::\n"
-           "Attempt to call free on invalid address, this WILL be fatal on release!");
+    assert(iterator && "::BUFFER_DEBUG_ERROR::\n Attempt to call free on invalid address, this WILL be fatal on release!");
 #endif
     /* [texture_node_t]
      *      -> pointer
