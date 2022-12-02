@@ -6,7 +6,12 @@
  * Last Modified 11/30/22
  * Rafael Li
 */
+#ifdef __clang__
+#define _strdup strdup
+#endif
+
 #include "pabackend.h"
+#include "vwrap.h"
 #include <iostream>
 using namespace std;
 

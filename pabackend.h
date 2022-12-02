@@ -5,13 +5,14 @@
  * 11/28/22
  * Last Modified by Rafael Li
  */
+#ifndef PABACKEND_CLASS
+#define PABACKEND_CLASS
+
 #include "image_node.h"
 #include <vector>
 #include <string>
 
-#ifndef PABACKEND_CLASS
-#define PABACKEND_CLASS
-
+#ifndef __clang__
 class EmptyListException : public std::exception {
 public:
     const char* what() {
@@ -32,6 +33,28 @@ public:
         return "Exception: Specified image does not contain specified tag";
     }
 };
+#else
+class EmptyListException : public std::exception {
+public:
+    const char* what() const _NOEXCEPT {
+        return "Exception: List is empty, requested operation invalid for empty lists";
+    }
+};
+
+class ImageNotFoundException : public std::exception {
+public:
+    const char* what() const _NOEXCEPT {
+        return "Exception: Specified image not found based on index value";
+    }
+};
+
+class TagNotFoundException : public std::exception {
+public:
+    const char* what() const _NOEXCEPT {
+        return "Exception: Specified image does not contain specified tag";
+    }
+};
+#endif
 
 class LL
 {
