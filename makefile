@@ -18,6 +18,10 @@ pabackendtest.o: pabackendtest.cpp
 pabackend.o: pabackend.cpp
 	g++ $^ -std=c++17 -Wall -c -o $@
 
+api: pabackend.o
+	g++ -std=c++11 api.cpp -ljsoncpp -o api.o
+	./api.o
+
 .PHONY: clean
 clean:
 	rm *.o

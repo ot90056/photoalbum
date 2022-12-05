@@ -11,7 +11,6 @@
 #include "image_node.h"
 #include <vector>
 #include <string>
-
 #ifndef __clang__
 class EmptyListException : public std::exception {
 public:
@@ -58,12 +57,11 @@ public:
 
 class LL
 {
-private:
+public:
     int length;
     image_node* head;
     image_node* tail;
 
-public:
     LL() { length = 0; head = NULL; tail = NULL; }
 
     // Adds image node to the head of the list

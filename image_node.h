@@ -12,15 +12,15 @@
 
 #ifndef IMAGE_NODE_FILE
 #define IMAGE_NODE_FILE
-
+#include <string>
 typedef struct vwrap vwrap;
 
 typedef struct image_node {
     int num_tags;
-    const char * location;
+    std::string location;
     vwrap * tags;
     struct image_node * next;
-    char * name; /* !MUST BE NUL TERMINATED! */
+    std::string name; /* !MUST BE NUL TERMINATED! */
 } image_node;
 
 #endif

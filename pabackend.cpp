@@ -26,24 +26,19 @@ image_node* LL::crt_nptr(image_node n) {
 
 void LL::push(image_node n) {
     image_node* nptr = crt_nptr(n);
-    // Case empty list
-    if (length == 0) {
+    // If list is empty, set head to new node
+    if (head == NULL) {
         head = nptr;
-        tail = nptr;
         length++;
+        return;
     }
-    // Add image node to the head of the list
-    else {
-        nptr->next = head;
-        head = nptr;
-        // Set tail
-        image_node* curr = head;
-        while (curr->next != NULL) {
-            curr = curr->next;
-        }
-        tail = curr;
-        length++;
+    // Otherwise, traverse to end of list and add new node
+    image_node* curr = head;
+    while (curr->next != NULL) {
+        curr = curr->next;
     }
+    curr->next = nptr;
+    length++;
 }
 
 void LL::pop() {
@@ -186,22 +181,15 @@ void LL::remove(int ind) {
 }
 
 image_node* LL::select(int ind) {
-    // Case list is empty
-    if (length == 0) {
-        throw EmptyListException();
-    }
-    // Case desired index not in list
-    else if (ind > length || ind < 0) {
+    // Select image at specified index
+    image_node* curr = head;
+    if (ind > length || ind < 0) {
         throw ImageNotFoundException();
     }
-    // Find and return desired image
-    else {
-        image_node* curr = head;
-        for (int i = 0; i < ind; i++) {
-            curr = curr->next;
-        }
-        return curr;
+    for (int i = 0; i < ind; i++) {
+        curr = curr->next;
     }
+    return curr;
 }
 
 void LL::add_Tag(int ind, char* tag) {
