@@ -1,13 +1,13 @@
 all: buffer_test pabackend_test
 
-buffer_test: buffer.o unit_test.o
+buffer_test: buffer.o buffer_test.o
 	gcc $^ -o $@
 
 buffer.o: buffer.c
-	gcc $^ -Wall -c -o $@
+	gcc $^ -g -Wall -c -o $@
 	
-unit_test.o: unit_test.c
-	gcc $^ -Wall -c -o $@
+buffer_test.o: buffer_test.c
+	gcc $^ -g -Wall -c -o $@
 	
 pabackend_test: pabackend.o pabackendtest.o
 	g++ $^ -std=c++17 -Wall -o $@
