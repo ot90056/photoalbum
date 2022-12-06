@@ -48,7 +48,7 @@ def GetAllImageTags(imageFilePath):
         return ""
 
     # Load CNN model
-    model = torch.jit.load("./my_custom_model.pt")
+    model = torch.jit.load("AI_Functions/my_custom_model.pt")
     model.eval()
 
     # Define preprocessor
@@ -77,7 +77,7 @@ def GetAllImageTags(imageFilePath):
 
     # Create final linear layer and load in weights
     classifier = torch.nn.Linear(1024, 365)
-    classifier_params = torch.jit.load("./classifier_parameters.pt")
+    classifier_params = torch.jit.load("AI_Functions/classifier_parameters.pt")
 
     with torch.no_grad():
         classifier.weight = torch.nn.Parameter(classifier_params.classifier_weight)
@@ -101,12 +101,12 @@ if __name__ == '__main__':
 
     print("Testing Model...\n")
 
-    testImage = "./Images/ocean_test_img.jpg"
+    testImage = "AI_Functions/Images/ocean_test_img.jpg"
 
     imgLabels, imgConfidence = GetAllImageTags(testImage)
 
-    print("Model Labels ~~~~~~~~~~~~~~~\n")
-    for x, label in enumerate(imgLabels):
-        print(label + ": " + str(round(imgConfidence[x], 3)) + "%")
+    # print("Model Labels ~~~~~~~~~~~~~~~\n")
+    # for x, label in enumerate(imgLabels):
+    #     print(label + ": " + str(round(imgConfidence[x], 3)) + "%")
 
-    print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+    # print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")

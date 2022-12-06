@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="static/css/style.css" />
+    <title>PhotoAlbum</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul class="nav-list">
+        <li><a href="/" class="button">Albums</a></li>
+        <li><a href="/Library" class="button">Library</a></li>
+      </ul>
+    </nav>
+    <section class="contentArea">
+      <ul class="photo-gallery">
+        <!-- Loop through the length of albums -->
+        {% for image in range(first|length) %}
+        <li>
+          <a href="album/{{ albums[image] }}">
+            <img src="{{ first[image] }}" alt="{{ image.album }}" />
+          </a>
+        {% endfor %}
+        <li>
+          <a href="/add_photo">
+            <img id = "add" src="static/stock/plus.jpg" alt="Add" />
+          </a>
+      </ul>
+    </section>
+  </body>
+</html>

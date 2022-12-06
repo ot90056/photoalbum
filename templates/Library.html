@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="static/css/style.css" />
+    <title>PhotoAlbum</title>
+  </head>
+  <body>
+    <!--button start-->
+    <nav class="navbar">
+      <ul class="nav-list">
+        <li><a href="/" class="button">Albums</a></li>
+        <li><a href="/Library" class="button">Library</a></li>
+      </ul>
+    </nav>
+    <!--button end-->
+    <section class="contentArea">
+            <ul class="photo-gallery">
+        {% for image in photos %}
+        <li>
+          <a href="{{ image }}">
+            <img src="{{ image }}" alt="{{ image.album }}" />
+            <span>{{ image.album }}</span>
+          </a>
+        </li>
+        {% endfor %}
+        <!-- Add an template to click to add -->
+      </ul>
+    </section>
+  </body>
+</html>
