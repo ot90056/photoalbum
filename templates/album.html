@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/style.css') }}" />
     <title>PhotoAlbum</title>
   </head>
   <body>
@@ -12,10 +12,10 @@
       </ul>
     </nav>
     <section class="contentArea">
+      <p>{{ albums }}</p>
       <ul class="photo-gallery">
         {% for image in photos %}
         <li>
-          <a href="album/{{ image.album }}">
             <img src="{{ image }}" alt="{{ image.album }}" />
             <span>{{ image.album }}</span>
           </a>
